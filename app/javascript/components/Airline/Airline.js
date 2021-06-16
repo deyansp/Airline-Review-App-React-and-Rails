@@ -47,6 +47,14 @@ const Airline = (props) => {
         })
         .catch ( (response) => console.log(response))
     }, [])
+
+    const handleChange = (e) => {
+        e.preventDefault()
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
     
     return (
         <Wrapper>
@@ -62,7 +70,12 @@ const Airline = (props) => {
                     </Main>
                 </Column>
                 <Column>
-                    <ReviewForm/>
+                    <ReviewForm
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
+                        attributes={airline.data.attributes}
+                        review={review}
+                    />
                 </Column>
             </Fragment>
         }
