@@ -31,9 +31,6 @@ const Airlines = () => {
     const[airlines, setAirlines] = useState([])
 
     useEffect(() => {
-        // Get all airlines from API
-        // Update airlines in component state
-
         axios.get("/api/v1/airlines.json")
         .then( (response) => {
             setAirlines(response.data.data)
