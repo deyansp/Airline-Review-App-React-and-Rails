@@ -32,7 +32,7 @@ const Main = styled.div`
 
 const Airline = (props) => {
     const [airline, setAirline] = useState({})
-    const [review, setReview] = useState({})
+    const [review, setReview] = useState({title: "", description: ""})
     const [loaded, setLoaded] = useState({})
 
     useEffect(() => {
@@ -50,10 +50,22 @@ const Airline = (props) => {
 
     const handleChange = (e) => {
         e.preventDefault()
+
+        // update review state with new user input
+        setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
+        console.log(e.target.name, e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        // sending new review to db through API
+        const airline_id = airline.data.id 
+        axios.post("/api/v1/reviews", {review, airline_id})
+        .then((response) => {
+            debugger
+        })
+        .catch((response) => {})
     }
     
     return (
