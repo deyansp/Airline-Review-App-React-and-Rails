@@ -83,15 +83,18 @@ const Airline = (props) => {
         setReview({...review, score})
     }
 
-    const reviews = airline.included.map( (item, index) => {
-        return (
-            <Review 
-                key={index}
-                attributes={item.attributes}
-            />
-        )
-    })
-    
+    let reviews
+    // if the airline review data is available, display it
+    if (loaded == true && airline.included) {
+        reviews = airline.included.map( (item, index) => {
+            return (
+                <Review 
+                    key={index}
+                    attributes={item.attributes}
+                />
+            )
+        })
+    }
     
     
     return (
