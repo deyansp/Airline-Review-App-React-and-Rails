@@ -59,6 +59,10 @@ const Airline = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        // token for protection against CSRF attacks
+        const csrfToken = document.querySelector("[name=csrf-token]").content
+        axios.defaults.headers.common["X-CSRF-TOKEN"] = csrfToken
+
         // sending new review to db through API
         const airline_id = airline.data.id 
         axios.post("/api/v1/reviews", {review, airline_id})
